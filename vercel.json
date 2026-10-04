@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "crons": [
+    {
+      "path": "/api/publish",
+      "schedule": "0 9 * * *"
+    }
+  ]
+}
