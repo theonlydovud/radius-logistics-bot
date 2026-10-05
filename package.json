@@ -6,6 +6,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "@google/genai": "^2.27.0",
     "axios": "^1.13.2",
     "cheerio": "^1.1.2",
     "dotenv": "^17.2.2"
