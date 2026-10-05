@@ -22,10 +22,54 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check Telegram environment
+        run: |
+          if [ -n "$TELEGRAM_BOT_TOKEN" ]; then
+            echo "TELEGRAM_BOT_TOKEN is present"
+          else
+            echo "TELEGRAM_BOT_TOKEN is MISSING"
+            exit 1
+          fi
+
+          if [ -n "$TELEGRAM_CHANNEL_ID" ]; then
+            echo "TELEGRAM_CHANNEL_ID is present"
+          else
+            echo "TELEGRAM_CHANNEL_ID is MISSING"
+            exit 1
+          fi
+
+          if [ -n "$GEMINI_API_KEY" ]; then
+            echo "GEMINI_API_KEY is present"
+          else
+            echo "GEMINI_API_KEY is MISSING"
+            exit 1
+          fi
+
+          if [ -n "$PEXELS_API_KEY" ]; then
+            echo "PEXELS_API_KEY is present"
+          else
+            echo "PEXELS_API_KEY is MISSING"
+            exit 1
+          fi
+
+          if [ -n "$REVIEW_CHAT_ID" ]; then
+            echo "REVIEW_CHAT_ID is present"
+          else
+            echo "REVIEW_CHAT_ID is MISSING"
+            exit 1
+          fi
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          REVIEW_CHAT_ID: ${{ secrets.REVIEW_CHAT_ID }}
+
       - name: Run Radius Logistics bot
         run: node index.js
         env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           REVIEW_CHAT_ID: ${{ secrets.REVIEW_CHAT_ID }}
