@@ -1,5 +1,12 @@
 import "dotenv/config";
 
+console.log("ENV CHECK:", {
+  TELEGRAM_BOT_TOKEN: Boolean(process.env.TELEGRAM_BOT_TOKEN),
+  TELEGRAM_CHANNEL_ID: Boolean(process.env.TELEGRAM_CHANNEL_ID),
+  GEMINI_API_KEY: Boolean(process.env.GEMINI_API_KEY),
+  PEXELS_API_KEY: Boolean(process.env.PEXELS_API_KEY)
+});
+
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { GoogleGenAI } from "@google/genai";
